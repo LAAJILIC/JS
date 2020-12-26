@@ -66,7 +66,7 @@ checkIn(flight, cyrine);
 
 
 // Comparing emails
-const email = 'cyrine.laajiliàgmail.com';
+const email = 'cyrine.laajili@gmail.com';
 const loginEmail = '  Cyrine.Laajili@gmail.Com \n';
 const normalizedEmail = loginEmail.toLowerCase().trim();
 
