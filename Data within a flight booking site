@@ -41,12 +41,29 @@ const checkBaggage = function (items) {
   }
 };
 
-checkBaggage(
-  'I have a laptop, some Food and a water bottle with more than 100 ml'
-);
+checkBaggage('I have a laptop, some Food and a water bottle with more than 100 ml');
 checkBaggage('Flowers and some chocolate');
-
 checkBaggage('Emballed knife and camera');
+
+// Verify booking data
+const flight = 'LC199';
+const cyrine = {
+  name: 'Cyrine LAAJILI',
+  passport: mlkX258,
+};
+
+const checkIn = function (flightNum, passenger) {
+  flightNum = 'LM729';
+  passenger.name = 'Ms. ' + passenger.name;
+
+  if (passenger.passport === mlkX258) {
+    alert('Checked in');
+  } else {
+    alert('Wrong passport!');
+  }
+};
+checkIn(flight, cyrine);
+
 
 // Comparing emails
 const email = 'cyrine.laajiliàgmail.com';
