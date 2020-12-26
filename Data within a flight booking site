@@ -1,0 +1,55 @@
+const checkMidSeat = function (seat) {
+  //B and E are middle seats 
+  const s = seat.slice(-1);
+  if (s === 'B' || s === 'E') console.log('You got the middle seat 😬');
+  else console.log('You got lucky 😎');
+};
+
+checkMidSeat('11B');
+checkMidSeat('23C');
+checkMidSeat('3E');
+
+//Replacing 
+const announcement =
+  'All passengers come to boarding door 23. Boarding door 23!';
+console.log(announcement.replaceAll('door', 'gate'));
+
+// Fix capitalization in name
+const passenger = 'CyriNe'; // Cyrine
+const passengerLower = passenger.toLowerCase();
+const passengerCorrect =
+  passengerLower[0].toUpperCase() + passengerLower.slice(1);
+  
+ // Verify the air company name 
+ const plane = 'Airbus A330 tunisair';
+console.log(plane.includes('A330'));
+console.log(plane.includes('Boeing'));
+console.log(plane.startsWith('Airb'));
+
+if (plane.startsWith('Airbus') && plane.endsWith('sair')) {
+  console.log('Part of the NEW Airbus Tunisiar family');
+}
+
+// Baggage checking
+const checkBaggage = function (items) {
+  const baggage = items.toLowerCase(); // to make it more easy
+
+  if (baggage.includes('knife') || baggage.includes('more than 100 ml')) {
+    console.log('You are NOT allowed on board');
+  } else {
+    console.log('Welcome aboard!');
+  }
+};
+
+checkBaggage(
+  'I have a laptop, some Food and a water bottle with more than 100 ml'
+);
+checkBaggage('Flowers and some chocolate');
+
+checkBaggage('Emballed knife and camera');
+
+// Comparing emails
+const email = 'cyrine.laajiliàgmail.com';
+const loginEmail = '  Cyrine.Laajili@gmail.Com \n';
+const normalizedEmail = loginEmail.toLowerCase().trim();
+
