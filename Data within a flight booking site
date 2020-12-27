@@ -9,6 +9,20 @@ checkMidSeat('11B');
 checkMidSeat('23C');
 checkMidSeat('3E');
 
+
+//Boarding notification
+const boardPass = function (n, sec) {
+  const howMany = n / 3;
+
+  setTimeout(function () {
+    console.log(`We are now boarding all ${n} passengers`);
+    console.log(`There are 3 groups, each with ${howMany} passengers`);
+  }, sec * 1000);
+
+  console.log(`Will start boarding in ${sec} seconds`);
+};
+boardPass(200, 5);
+
 //Replacing 
 const announcement =
   'All passengers come to boarding door 23. Boarding door 23!';
