@@ -65,6 +65,32 @@ const checkIn = function (flightNum, passenger) {
 checkIn(flight, cyrine);
 
 
+//booking instrucions 
+ const tunisair = {
+  company: 'Tunisair',
+  compCode: 'TN',
+  bookings: [],
+  book(flightNum, name) {
+    console.log(
+      `${name} booked a seat on ${this.company} flight ${this.compCode}${flightNum}`
+    );
+    this.bookings.push({ flight: `${this.compCode}${flightNum}`, name });
+  },
+};
+tunisair.book(296, 'Cyrine LAAJILI');
+
+const eurowings = {
+  company: 'Eurowings',
+  compCode: 'EW',
+  bookings: [],
+};
+const book = tunisair.book;
+book.call(eurowings, 23, 'Myriam SADIKA');
+
+const flightData = [574, 'Emma LONDON'];
+book.call(eurowings, ...flightData);
+
+
 // Comparing emails
 const email = 'cyrine.laajili@gmail.com';
 const loginEmail = '  Cyrine.Laajili@gmail.Com \n';
