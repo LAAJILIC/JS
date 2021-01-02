@@ -15,3 +15,16 @@ const checkDogs = function (arr1, arr2) {
 };
 checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
 checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+//Is in adult ??
+const calcAverageHumanDogsAge = function (ages) {
+  const dogsInHuman = ages.map(age => (age <= 2 ? age * 2 : age * 4 + 16));
+  console.log(dogsInHuman);
+  const strictDogsAge = dogsInHuman.filter(age => age >= 18);
+  console.log(strictDogsAge);
+  const dogsAverage =
+    strictDogsAge.reduce((acc, cur) => acc + cur, 0) / strictDogsAge.length;
+  console.log(dogsAverage);
+};
+calcAverageHumanDogsAge([5, 2, 4, 1, 15, 8, 3]);
+calcAverageHumanDogsAge([16, 6, 10, 5, 6, 1, 4]);
