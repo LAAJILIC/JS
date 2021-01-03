@@ -1,0 +1,111 @@
+'use strict';
+const checkDogs = function (arr1, arr2) {
+  arr1.splice(-2);
+  arr1.splice(0, 1);
+  console.log(arr1);
+
+  const dogs = arr1.concat(arr2);
+  console.log(dogs);
+  dogs.forEach(function (move, i) {
+    const check =
+      move > 3
+        ? `Dog number ${i + 1} is an adult, and is ${move} years old`
+        : `Dog number ${i + 1} is still a puppy`;
+    console.log(check);
+  });
+};
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+//Is in adult ??
+//Methode 1
+const calcAverageHumanDogsAge = function (ages) {
+  const dogsInHuman = ages.map(age => (age <= 2 ? age * 2 : age * 4 + 16));
+  const strictDogsAge = dogsInHuman.filter(age => age >= 18);
+  const dogsAverage =
+    strictDogsAge.reduce((acc, cur) => acc + cur, 0) / strictDogsAge.length;
+  console.log(dogsAverage);
+};
+calcAverageHumanDogsAge([5, 2, 4, 1, 15, 8, 3]);
+calcAverageHumanDogsAge([16, 6, 10, 5, 6, 1, 4]);
+//Method 2 "chaining" (must use only one of them in order to not have reference error)
+const calcAverageHumanDogsAge2 = function (ages) {
+  const dogsAverage = ages
+    .map(age => (age <= 2 ? age * 2 : age * 4 + 16))
+    .filter(age => age >= 18)
+    .reduce((acc, cur, i, arr) => acc + cur / arr.length, 0);
+  console.log(dogsAverage);
+};
+
+const dogs = [
+  { weight: 22, curFood: 250, owners: ['Ali', 'Jamel'] },
+  { weight: 8, curFood: 200, owners: ['Sila'] },
+  { weight: 13, curFood: 275, owners: ['Sarah', 'Joseph'] },
+  { weight: 32, curFood: 340, owners: ['Karine'] },
+];
+
+//calculate the recommended food for a dog
+dogs.forEach(
+  dog => (dog.recommendedFood = Math.trunc(dog.weight ** 0.75 * 28))
+);
+console.log(dogs);
+
+//Does his dog food fit with the characteristics?
+const isItWellEating = function (owner) {
+  const dogOwner = dogs.find(dog => dog.owners.includes(owner));
+
+  dogOwner.curFood < dogOwner.recommendedFood
+    ? console.log(`${owner}'s dog is eating too little`)
+    : console.log(`${owner}'s dog is eating too much`);
+};
+isItWellEating('Sarah');
+isItWellEating('Ali');
+isItWellEating('Sila');
+isItWellEating('Karine');
+
+//Specify owners according to their dogs food classification
+const ownerDEatTooMuch = [];
+const ownerDEatTooLittle = [];
+
+dogs.forEach(dog =>
+  dog.curFood > dog.recommendedFood
+    ? ownerDEatTooMuch.push(dog.owners)
+    : ownerDEatTooLittle.push(dog.owners)
+);
+console.log(ownerDEatTooMuch, ownerDEatTooLittle);
+/*another way to do it
+const ownerDEatTooMuch = dogs
+  .filter(dog => dog.curFood > dog.recommendedFood)
+  .flatMap(dog => dog.owners);*/
+
+const owMuch = ownerDEatTooMuch.flat();
+const owLittle = ownerDEatTooLittle.flat();
+
+console.log(
+  [...ownerDEatTooLittle.flat()].join(' und ') + `'s dogs eat too little`
+);
+console.log([...owMuch].join(' und ') + `'s dogs eat too much`);
+
+//Is there a dog who eats exactly the recommended amount?
+console.log(dogs.some(dog => dog.curFood === dog.recommendedFood));
+
+//Is there a dog who eats an OKAY amount? if YES put them into new array
+console.log(
+  dogs.some(
+    dog => dog.recommendedFood * 0.9 < dog.curFood < dog.recommendedFood * 1.1
+  )
+);
+
+const okDogs = dogs.filter(
+  dog =>
+    dog.recommendedFood * 0.9 < dog.curFood &&
+    dog.curFood < dog.recommendedFood * 1.1
+);
+console.log(okDogs);
+
+//sorting the dogs array by recommended amount in ascending way
+dogs.sort((dog1, dog2) => {
+  if (dog1.recommendedFood > dog2.recommendedFood) return 1;
+  if (dog1.recommendedFood < dog2.recommendedFood) return -1;
+});
+console.log(dogs);
