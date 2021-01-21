@@ -19,7 +19,8 @@ salma.birthYear = 1985;
 salma.calcAge();
 
 
-/////Inheritnce between classes ( or prototypes) using the Object.create
+/////Inheritnce using the Object.create
+
 const StudentObject = Object.create(PersonObject);
 StudentObject.init = function (firstName, birthYear, course) {
   PersonObject.init.call(this, firstName, birthYear);
