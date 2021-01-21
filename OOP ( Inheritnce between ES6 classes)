@@ -1,0 +1,60 @@
+'use strict';
+class PersonCl {
+  constructor(fullName, birthYear) {
+    this.fullName = fullName;
+    this.birthYear = birthYear;
+  }
+  //Instance methods
+  // methods will be added to PersonCl.prototype ( we can't create methods inside the constructor of the class)
+  calcAge() {
+    console.log(2020 - this.birthYear);
+  }
+  greet() {
+    console.log(`Hey, I am ${this.fullName}`);
+  }
+  get age() {
+    return 2037 - this.birthYear;
+  } //age is like a property of PersonCl now
+  set fullName(name) {
+    if (name.includes(' ')) this._fullName = name;
+    else alert(`${name} is not a full name!`);
+  } // like setting up or adding a new property but as a fullName property already exists so we should add the "_"
+  get fullName() {
+    return this._fullName;
+  }
+  //add static method
+  static hey() {
+    console.log('Hey you');
+    console.log(this);
+  }
+}
+const noura = new PersonCl('Noura Gharsallah', 1974);
+const jihen = new PersonCl('Jihen Zegden', 1992);
+const sami = new PersonCl('Sami', 2000);
+console.log(jihen);
+noura.calcAge();
+noura.greet();
+sami.calcAge();
+PersonCl.hey();
+
+
+/////Inheritnce between classes using the ES6 classes
+class StudentCl extends PersonCl {
+  constructor(fullName, birthYear, course) {
+    super(fullName, birthYear);
+    this.course = course;
+  } //Now the child class will share all the properties of the Parent class
+  introduce() {
+    console.log(`My name is ${this.fullName} and I study ${this.course}`);
+  }
+  calcAge() {
+    console.log(
+      `I'm ${2037 - this.birthYear} years old, but I Look like I am ${
+        2037 - this.birthYear + 10
+      } years`
+    );
+  }
+}
+const fay = new StudentCl('Fay Majdoub', 2000, 'Mathematics');
+fay.introduce();
+fay.calcAge();
