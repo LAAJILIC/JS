@@ -1,0 +1,39 @@
+'use strict';
+
+const Person = function (firstName, birthYear) {
+  this.firstName = firstName;
+  this.bitrthYear = birthYear;
+};
+const cyrine = new Person('Cyrine', 1994);
+const emna = new Person('Emna', 1991);
+console.log(cyrine instanceof Person);
+Person.prototype.calcAge = function () {
+  console.log(2040 - this.bitrthYear);
+};
+console.log(cyrine, emna);
+cyrine.calcAge();
+Person.prototype.nationality = ' german ';
+console.log(cyrine.hasOwnProperty('firstName'));
+console.log(cyrine.hasOwnProperty('nationality'));
+
+const arr = [1, 5, 2, 6, 1, 4, 5, 3, 9, 9];
+Array.prototype.unique = function () {
+  return [...new Set(this)];
+};
+console.log(arr.unique());
+
+/////Inheritnce between classes using the constructor function ("Student" is a child class of the parent class "Person")
+
+const Student = function (firstName, birthYear, course) {
+  Person.call(this, firstName, birthYear);
+  this.course = course;
+};
+// Linking prototypes ( Prototype chain with classes)
+Student.prototype = Object.create(Person.prototype);
+
+Student.prototype.introduce = function () {
+  console.log(`My name is ${this.firstName} and I study ${this.course}`);
+};
+const mila = new Student('Mila', 2005, 'Earth sciences');
+mila.introduce();
+mila.calcAge();
